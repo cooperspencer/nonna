@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"strings"
 
@@ -71,7 +72,7 @@ func main() {
 					}
 					for _, x := range i {
 						for _, t := range x.RepoTags {
-							if t == tag {
+							if t == fmt.Sprintf("/%s", tag) {
 								if x.ID != id {
 									for _, c := range running[tag] {
 										log.Info().Str("stage", "pull").Msgf("pulled new image for %s\n", tag)
