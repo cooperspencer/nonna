@@ -76,6 +76,7 @@ func main() {
 									for _, c := range running[tag] {
 										log.Info().Str("stage", "pull").Msgf("pulled new image for %s\n", tag)
 										conf, err := cli.ContainerInspect(ctx, c.Container.ID)
+										conf.Image = tag
 										if err != nil {
 											log.Fatal().Str("stage", "get config").Msg(err.Error())
 										}
